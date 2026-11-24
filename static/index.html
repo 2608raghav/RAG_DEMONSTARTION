@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#101311" />
+    <title>Fieldnotes — PDF RAG</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <a class="brand" href="/" aria-label="Fieldnotes home">
+          <span class="brand-mark"><span></span><span></span><span></span></span>
+          <span>fieldnotes<span class="brand-period">.</span></span>
+        </a>
+
+        <div class="workspace-label">WORKSPACE</div>
+        <div class="workspace-card">
+          <span class="workspace-icon">✳</span>
+          <span><strong>My workspace</strong><small>Personal library</small></span>
+          <span class="chevron">⌄</span>
+        </div>
+
+        <div class="section-heading">
+          <span>YOUR DOCUMENTS</span>
+          <span id="document-count" class="count-badge">0</span>
+        </div>
+        <div id="document-list" class="document-list">
+          <div class="empty-docs">Your library is waiting.<br />Add a PDF to get started.</div>
+        </div>
+
+        <div class="sidebar-bottom">
+          <div class="pipeline-card">
+            <div class="pipeline-top"><span class="status-dot"></span><span>RAG PIPELINE</span><span class="live-label">READY</span></div>
+            <div class="pipeline-steps">
+              <span><i>01</i> Chunk &amp; embed</span>
+              <span><i>02</i> Semantic search</span>
+              <span><i>03</i> Mistral synthesis</span>
+            </div>
+          </div>
+          <div class="profile"><div class="avatar">Y</div><div><strong>Your account</strong><small>Local demo</small></div><span class="dots">···</span></div>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div class="breadcrumb"><span>My workspace</span><b>/</b><strong>Research assistant</strong></div>
+          <div class="top-actions"><span class="model-badge"><span class="provider-dot"></span><span id="provider-label">LOCAL AI</span></span><button id="clear-chat" class="icon-button" title="Clear conversation" aria-label="Clear conversation">↻</button></div>
+        </header>
+
+        <section id="chat" class="chat-area" aria-live="polite">
+          <div id="welcome" class="welcome">
+            <div class="eyebrow"><span class="eyebrow-line"></span>YOUR PRIVATE RESEARCH SPACE</div>
+            <h1>Good ideas start<br />with <em>good questions.</em></h1>
+            <p class="welcome-copy">Bring your documents. Ask what matters.<br />Find the signal in all that noise.</p>
+
+            <div class="welcome-stats">
+              <div><strong>01</strong><span>Upload your<br />PDFs</span></div>
+              <div class="stat-arrow">→</div>
+              <div><strong>02</strong><span>We make them<br />searchable</span></div>
+              <div class="stat-arrow">→</div>
+              <div><strong>03</strong><span>Ask away,<br />with sources</span></div>
+            </div>
+
+            <div id="upload-card" class="upload-card">
+              <div class="upload-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4m0 0L7 9m5-5 5 5M5 15v4a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-4"/></svg></div>
+              <div class="upload-copy"><strong>Drop a PDF here, or <label for="file-input">browse files</label></strong><span>PDF files up to 25 MB</span></div>
+              <input id="file-input" type="file" accept="application/pdf,.pdf" hidden />
+              <button id="browse-button" class="browse-button" type="button">Add a PDF <span>＋</span></button>
+            </div>
+            <p id="upload-status" class="upload-status" role="status"></p>
+
+            <div class="suggestion-row">
+              <span class="suggestion-label">TRY ASKING</span>
+              <button class="suggestion" data-question="What are the main takeaways?">What are the main takeaways? <span>↗</span></button>
+              <button class="suggestion" data-question="Summarize this document">Summarize this document <span>↗</span></button>
+            </div>
+          </div>
+          <div id="messages" class="messages"></div>
+        </section>
+
+        <footer class="composer-wrap">
+          <div class="composer">
+            <textarea id="question-input" rows="1" placeholder="Ask anything about your documents..." aria-label="Your question"></textarea>
+            <div class="composer-bottom"><span><span class="sparkle">✳</span> Answers are grounded in your documents</span><button id="send-button" class="send-button" aria-label="Send message" disabled>↑</button></div>
+          </div>
+          <p class="disclaimer">AI can make mistakes. Check the cited passages for yourself.</p>
+        </footer>
+      </main>
+    </div>
+    <script src="/static/app.js"></script>
+  </body>
+</html>
